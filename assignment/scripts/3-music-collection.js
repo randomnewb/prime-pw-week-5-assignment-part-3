@@ -31,9 +31,7 @@ function addToCollection(title, artist, yearPublished) {
 //Add 6 items below
 console.log(addToCollection("Word Up", "Cameo", 1986));
 console.log(addToCollection("Juicy Fruit", "Mtume", 1983));
-console.log(
-  addToCollection("P.Y.T. (Pretty Young Thing)", "Michael Jackson", 1982)
-);
+console.log(addToCollection("P.Y.T. (Pretty Young Thing)", "Michael Jackson", 1982));
 console.log(addToCollection("Let It Whip", "Dazz Band", 1982));
 console.log(addToCollection("Computer Love", "ZAPP", 1985));
 console.log(addToCollection("More Bounce to the Ounce", "ZAPP", 1993));
@@ -97,9 +95,17 @@ function findByArtist(artist, musicCollection) {
 
 //Test by searching for various artists including ones that do not exist in collection
 findByArtist("ZAPP", collection);
+
+//Should expect an empty array because no songs by Lakeside are in collection
 findByArtist("Lakeside", collection);
+
+//Should find just one entry each for the other searches
 findByArtist("Cameo", collection);
 findByArtist("Michael Jackson", collection);
+
+
+
+//Declare search objects for stretch goal
 
 //Search object from stretch goal
 let searchSample = {
@@ -137,7 +143,9 @@ function search (searchObject, musicCollection) {
           //Push the song to an array
           match.push(song.artist);
           match.push(song.yearPublished);
-          matches.push(song);
+          matches.push(match);
+          //empty match to prepare for any other matches
+          match = [];
     } else if (searchObject.artist === undefined && searchObject.year === undefined) {
       console.log(song.artist);
       console.log(song.yearPublished);
@@ -146,7 +154,8 @@ function search (searchObject, musicCollection) {
     }
   }
   if (matches.length > 0) {
-  return matches;
+    let matchMsg = 'Here are the matching artists and years';
+    return `${matchMsg},${JSON.stringify(matches)}`;
   } else {
     let notFound = 'No entries found, showing empty collection'
     return `${notFound},${JSON.stringify(matches)}`;
