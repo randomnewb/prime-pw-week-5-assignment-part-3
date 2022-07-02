@@ -100,3 +100,55 @@ findByArtist("ZAPP", collection);
 findByArtist("Lakeside", collection);
 findByArtist("Cameo", collection);
 findByArtist("Michael Jackson", collection);
+
+//Search object from stretch goal
+let searchSample = {
+  artist: 'Ray Charles',
+  year: 1957
+};
+
+//Search object in which we know one record exists
+let searchExist = {
+  artist: 'Michael Jackson',
+  year: 1982
+};
+
+//Search object in which we know artist and year exists and matches
+//Other year for ZAPP - 1985 does not match
+let singleArtist = {
+  artist: 'ZAPP',
+  year: 1993
+};
+
+let emptySearch = {};
+
+function search (searchObject, musicCollection) {
+  let match = [];
+  let matches = [];
+
+
+  console.log(searchObject.artist);
+  console.log(searchObject.year);
+  //Look through the records of musicCollection
+  for (let song of musicCollection) {
+    //if the artist and year published we are searching for matches a record in the musicCollection...
+    if (song.artist === searchObject.artist && song.yearPublished === searchObject.year) {
+          //Push the song to an array
+          match.push(song.artist);
+          match.push(song.yearPublished);
+          matches.push(song);
+    } else if (searchObject.artist === undefined && searchObject.year === undefined) {
+      console.log(song.artist);
+      console.log(song.yearPublished);
+      let noMatch = 'No matches found, showing entire collection';
+      return `${noMatch},${JSON.stringify(musicCollection)}.`;
+    }
+  }
+  return matches;
+}
+
+//Test cases
+// console.log(search(searchSample,collection));
+// console.log(search(searchExist,collection));
+// console.log(search(singleArtist,collection));
+console.log(search(emptySearch,collection));
