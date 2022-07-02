@@ -38,6 +38,10 @@ console.log('Current collection is',collection);
 
 function showCollection (musicCollection) {
     console.log('The number of songs in the collection is',musicCollection.length);
+
+    for (let song of collection) {
+        console.log(song.title,'by',song.artist,'was published in',song.yearPublished);
+    }
 }
 
 //Test the first part of the showCollection function
