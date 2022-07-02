@@ -120,6 +120,7 @@ let singleArtist = {
   year: 1993
 };
 
+//Empty search object
 let emptySearch = {};
 
 function search (searchObject, musicCollection) {
@@ -140,15 +141,20 @@ function search (searchObject, musicCollection) {
     } else if (searchObject.artist === undefined && searchObject.year === undefined) {
       console.log(song.artist);
       console.log(song.yearPublished);
-      let noMatch = 'No matches found, showing entire collection';
-      return `${noMatch},${JSON.stringify(musicCollection)}.`;
+      let emptySearch = 'Empty search, showing entire collection';
+      return `${emptySearch},${JSON.stringify(musicCollection)}.`;
     }
   }
+  if (matches.length > 0) {
   return matches;
+  } else {
+    let notFound = 'No entries found, showing empty collection'
+    return `${notFound},${JSON.stringify(matches)}`;
+  }
 }
 
 //Test cases
-// console.log(search(searchSample,collection));
-// console.log(search(searchExist,collection));
-// console.log(search(singleArtist,collection));
+console.log(search(searchSample,collection));
+console.log(search(searchExist,collection));
+console.log(search(singleArtist,collection));
 console.log(search(emptySearch,collection));
