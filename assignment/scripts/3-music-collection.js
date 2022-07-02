@@ -36,6 +36,11 @@ console.log(addToCollection('More Bounce to the Ounce','ZAPP',1993));
 //Log the collection object
 console.log('Current collection is',collection);
 
+/**
+ * Logs total number of songs in a collection and also the title, artist, and date published
+ * @param {Array} musicCollection Array that contains objects with 3 properties (title, artist, and date published)
+ */
+
 function showCollection (musicCollection) {
     console.log('The number of songs in the collection is',musicCollection.length);
 
@@ -45,4 +50,34 @@ function showCollection (musicCollection) {
 }
 
 //Test the first part of the showCollection function
+//Also tests the second part of the function
 showCollection(collection);
+
+/**
+ * Function that searches a collection of music for the specified artist and returns any songs found that match the artist
+ * @param {String} artist Artist name
+ * @param {Array} musicCollection Array that contains objects with 3 properties (title, artist, and date published)
+ * @returns Songs that match artist from search
+ */
+
+function findByArtist (artist, musicCollection) {
+    let holder = [];
+
+    for (let song of musicCollection) {
+        if (song.artist === artist) {
+            holder.push(song)
+        }
+    }
+
+    if (holder.length === 0) {
+        holder = console.log(holder);
+    } else ( holder = console.table(holder))
+
+    return holder;
+}
+
+//Test by searching for various artists including ones that do not exist in collection
+findByArtist('ZAPP',collection);
+findByArtist('Lakeside',collection);
+findByArtist('Cameo',collection);
+findByArtist('Michael Jackson',collection);
